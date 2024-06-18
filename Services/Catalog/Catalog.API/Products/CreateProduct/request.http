@@ -1,0 +1,13 @@
+@url = https://localhost:5050/products
+
+### Create a new product
+POST {{url}}
+Content-Type: application/json
+
+{
+    "name": "Product 1",
+    "categories" : ["c1", "c2"],
+    "description": "Product 1 description",
+    "imageFile": "product1.jpg",
+    "price": 100
+}
