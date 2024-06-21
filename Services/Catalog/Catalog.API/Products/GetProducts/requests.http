@@ -1,0 +1,4 @@
+@url = https://localhost:5050/products
+
+### Fetch all products
+GET {{url}}
