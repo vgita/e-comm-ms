@@ -1,5 +1,5 @@
 @url = https://localhost:5050/products
-@id = 01903be9-1843-4073-9d7c-5980e63a507e
+@id = 01903ecd-b031-4b62-b9da-cc3b93ae00c7
 
-### Fetch all products
+### Fetch product
 GET {{url}}/{{id}}
