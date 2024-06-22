@@ -2,3 +2,6 @@
 
 ### Fetch all products
 GET {{url}}
+
+### Fetch all products for category
+GET {{url}}?category=c1

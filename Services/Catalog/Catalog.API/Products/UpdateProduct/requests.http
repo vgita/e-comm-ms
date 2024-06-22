@@ -1,0 +1,14 @@
+@url = https://localhost:5050/products
+@id = 01903be9-1843-4073-9d7c-5980e63a507e
+
+### Create a new product
+PUT {{url}}/{{id}}
+Content-Type: application/json
+
+{
+    "name": "Product 1",
+    "categories" : ["c1", "c2", "c0"],
+    "description": "Product 1 description",
+    "imageFile": "product1.jpg",
+    "price": 100
+}

@@ -1,7 +1,7 @@
 
 namespace Catalog.API.Products.GetProducts;
 
-public record GetProductsQuery : IQuery<GetProductsResult>;
+public record GetProductsQuery(string? Category) : IQuery<GetProductsResult>;
 public record GetProductsResult(IEnumerable<Product> Products);
 
 internal class GetProductsQueryHandler
@@ -12,8 +12,11 @@ internal class GetProductsQueryHandler
     {
         logger.LogInformation("GetProductsQueryHandler.Handle called with query: {@Query}", query);
 
-        var products = await session.Query<Product>().ToListAsync(cancellationToken);
+        IQueryable<Product> products = session.Query<Product>();
 
-        return new GetProductsResult(products);
+        if (query.Category is not null)
+            products = products.Where(p => p.Categories.Contains(query.Category));
+
+        return new GetProductsResult(await products.ToListAsync(cancellationToken));
     }
 }
