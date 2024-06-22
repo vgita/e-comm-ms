@@ -3,5 +3,8 @@
 ### Fetch all products
 GET {{url}}
 
+### Fetch all products paginated
+GET {{url}}?page=2&pageSize=2
+
 ### Fetch all products for category
 GET {{url}}?category=c1
