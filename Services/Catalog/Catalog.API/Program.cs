@@ -1,8 +1,6 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Add services to the container.
-
 var assembly = typeof(Program).Assembly;
 builder.Services.AddMediatR(config =>
 {
@@ -17,9 +15,15 @@ builder.Services.AddMarten(opts =>
 })
 .UseLightweightSessions();
 
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 app.MapCarter();
+
+app.UseExceptionHandler(options =>
+{
+    // using the configuration from the custom exception handler
+});
 
 app.Run();
