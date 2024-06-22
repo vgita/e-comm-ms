@@ -5,7 +5,7 @@ POST {{url}}
 Content-Type: application/json
 
 {
-    "name": "Product 1",
+    "name": "",
     "categories" : ["c1", "c2"],
     "description": "Product 1 description",
     "imageFile": "product1.jpg",
