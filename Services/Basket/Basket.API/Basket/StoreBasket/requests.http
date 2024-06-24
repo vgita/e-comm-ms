@@ -1,0 +1,20 @@
+@url = https://localhost:5051/basket
+
+### create basket
+POST {{url}}
+Content-Type: application/json
+
+{
+    "cart": {
+        "userName": "user",
+        "items": [
+            {
+                "quantity": 2,
+                "color": "red",
+                "price": 500,
+                "productId":"5b6e5f4b-0f1e-4b7b-8b3d-1b7f1e6e3f1f",
+                "productName": "smth"
+            }
+        ]
+    }
+}

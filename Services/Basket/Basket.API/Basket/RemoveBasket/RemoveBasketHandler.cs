@@ -13,10 +13,13 @@ public class RemoveBasketCommandValidator : AbstractValidator<RemoveBasketComman
     }
 }
 
-public class RemoveBasketCommandHandler : ICommandHandler<RemoveBasketCommand, RemoveBasketResult>
+public class RemoveBasketCommandHandler
+(IBasketRepository repository)
+: ICommandHandler<RemoveBasketCommand, RemoveBasketResult>
 {
-    public Task<RemoveBasketResult> Handle(RemoveBasketCommand command, CancellationToken cancellationToken)
+    public async Task<RemoveBasketResult> Handle(RemoveBasketCommand command, CancellationToken cancellationToken)
     {
-        return Task.FromResult(new RemoveBasketResult(true));
+        await repository.RemoveBasket(command.UserName, cancellationToken);
+        return new RemoveBasketResult(true);
     }
 }

@@ -1,0 +1,4 @@
+@url = https://localhost:5051/basket
+
+### remove basket
+DELETE {{url}}/user
