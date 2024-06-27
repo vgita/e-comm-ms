@@ -16,9 +16,6 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
             }
         },
         {
@@ -36,9 +33,23 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "Discount Launch",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/Services/Discount/Discount.Grpc/bin/Debug/net8.0/Discount.Grpc.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Services/Discount/Discount.Grpc",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
             },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
             }
         },
         {
