@@ -11,7 +11,7 @@ service DiscountService {
 }
 
 message CouponModel {
-    string Id = 1;
+    int32 id = 1;
     string productName = 2;
     string description = 3;
     int32 amount = 4;
@@ -30,7 +30,7 @@ message UpdateDiscountRequest {
 }
 
 message DeleteDiscountRequest {
-    string Id = 1;
+    int32 id = 1;
 }
 
 message DeleteDiscountResponse {
