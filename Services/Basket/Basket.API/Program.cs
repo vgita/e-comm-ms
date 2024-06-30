@@ -1,3 +1,4 @@
+using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
@@ -18,14 +19,27 @@ builder.Services.AddMarten(opts =>
     opts.Connection(builder.Configuration.GetConnectionString("Database")!);
     opts.Schema.For<ShoppingCart>().Identity(x => x.UserName);
 }).UseLightweightSessions();
-
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
-
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration.GetConnectionString("Redis")!;
     //options.InstanceName = "Basket";
+});
+
+builder.Services.AddGrpcClient<DiscountService.DiscountServiceClient>(o =>
+{
+    o.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+})
+.ConfigurePrimaryHttpMessageHandler(() =>
+{
+    HttpClientHandler handler = new()
+    {
+        //to bypass the certificate validation
+        //Error:  Call failed with gRPC error status. Status code: 'Internal', Message: 'Error starting gRPC call. HttpRequestException: The SSL connection could not be established
+        ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    };
+    return handler;
 });
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();

@@ -2,6 +2,36 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Catalog Docker Attach",
+            "type": "docker",
+            "request": "attach",
+            "platform": "netCore",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            },
+            "containerName": "catalog.api"
+        },
+        {
+            "name": "Basket Docker Attach",
+            "type": "docker",
+            "request": "attach",
+            "platform": "netCore",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            },
+            "containerName": "basket.api"
+        },
+        {
+            "name": "Discount Docker Attach",
+            "type": "docker",
+            "request": "attach",
+            "platform": "netCore",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            },
+            "containerName": "discount.grpc"
+        },
+        {
             "name": "Catalog Launch",
             "type": "coreclr",
             "request": "launch",
@@ -65,6 +95,16 @@
             "netCore": {
                 "appProject": "${workspaceFolder}/Services/Catalog/Catalog.API/Catalog.API.csproj"
             }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Docker Attach All Microservices",
+            "configurations": [
+                "Catalog Docker Attach",
+                "Basket Docker Attach",
+                "Discount Docker Attach"
+            ]
         }
     ]
 }
