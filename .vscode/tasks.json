@@ -44,12 +44,12 @@
             "dockerBuild": {
                 "tag": "ecommms:dev",
                 "target": "base",
-                "dockerfile": "${workspaceFolder}/Services/Catalog/Catalog.API/Dockerfile",
+                "dockerfile": "${workspaceFolder}/Services/Ordering/Ordering.API/Dockerfile",
                 "context": "${workspaceFolder}",
                 "pull": true
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/Services/Catalog/Catalog.API/Catalog.API.csproj"
+                "appProject": "${workspaceFolder}/Services/Ordering/Ordering.API/Ordering.API.csproj"
             }
         },
         {
@@ -58,7 +58,7 @@
             "dependsOn": ["build"],
             "dockerBuild": {
                 "tag": "ecommms:latest",
-                "dockerfile": "${workspaceFolder}/Services/Catalog/Catalog.API/Dockerfile",
+                "dockerfile": "${workspaceFolder}/Services/Ordering/Ordering.API/Dockerfile",
                 "context": "${workspaceFolder}",
                 "platform": {
                     "os": "linux",
@@ -67,7 +67,7 @@
                 "pull": true
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/Services/Catalog/Catalog.API/Catalog.API.csproj"
+                "appProject": "${workspaceFolder}/Services/Ordering/Ordering.API/Ordering.API.csproj"
             }
         },
         {
@@ -76,7 +76,7 @@
             "dependsOn": ["docker-build: debug"],
             "dockerRun": {},
             "netCore": {
-                "appProject": "${workspaceFolder}/Services/Catalog/Catalog.API/Catalog.API.csproj",
+                "appProject": "${workspaceFolder}/Services/Ordering/Ordering.API/Ordering.API.csproj",
                 "enableDebugging": true
             }
         },
@@ -86,7 +86,7 @@
             "dependsOn": ["docker-build: release"],
             "dockerRun": {},
             "netCore": {
-                "appProject": "${workspaceFolder}/Services/Catalog/Catalog.API/Catalog.API.csproj"
+                "appProject": "${workspaceFolder}/Services/Ordering/Ordering.API/Ordering.API.csproj"
             }
         }
     ]
