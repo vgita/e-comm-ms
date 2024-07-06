@@ -1,3 +1,10 @@
 {
-    "cSpell.words": ["ASPNETCORE", "CQRS", "discountdb", "Mapster", "Mediat"]
+    "cSpell.words": [
+        "ASPNETCORE",
+        "CQRS",
+        "discountdb",
+        "Dtos",
+        "Mapster",
+        "Mediat"
+    ]
 }
