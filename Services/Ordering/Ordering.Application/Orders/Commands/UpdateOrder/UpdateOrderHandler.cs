@@ -54,7 +54,7 @@ public class UpdateOrderHandler(IApplicationDbContext dbContext)
             shippingAddress: updatedShippingAddress,
             billingAddress: updatedBillingAddress,
             payment: updatedPayment,
-            status: orderDto.Status);
+            status: orderDto.OrderStatus);
     }
 
 }
