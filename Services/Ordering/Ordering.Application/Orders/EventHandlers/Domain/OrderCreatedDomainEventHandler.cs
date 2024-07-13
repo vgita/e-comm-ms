@@ -4,6 +4,7 @@ namespace Ordering.Application.Orders.EventHandlers.Domain;
 
 public class OrderCreatedDomainEventHandler
     (IPublishEndpoint publishEndpoint,
+    IFeatureManager featureManager,
     ILogger<OrderCreatedDomainEventHandler> logger)
     : INotificationHandler<OrderCreatedEvent>
 {
@@ -11,8 +12,10 @@ public class OrderCreatedDomainEventHandler
     {
         logger.LogInformation("OrderCreatedEvent: {OrderId} is successfully handled.", domainEvent.Order.Id);
 
-        OrderDto orderDto = domainEvent.Order.ToOrderDto();
-
-        await publishEndpoint.Publish(orderDto, cancellationToken);
+        if (await featureManager.IsEnabledAsync("OrderFulfillment"))
+        {
+            OrderDto orderDto = domainEvent.Order.ToOrderDto();
+            await publishEndpoint.Publish(orderDto, cancellationToken);
+        }
     }
 }
