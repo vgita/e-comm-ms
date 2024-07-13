@@ -25,8 +25,8 @@ public static class Extensions
                     host.Username(configuration["MessageBroker:Username"]!);
                     host.Password(configuration["MessageBroker:Password"]!);
                 });
+                cfg.ConfigureEndpoints(context);
             });
-
         });
         return services;
     }

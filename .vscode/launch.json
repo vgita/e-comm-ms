@@ -32,6 +32,16 @@
             "containerName": "discount.grpc"
         },
         {
+            "name": "Ordering Docker Attach",
+            "type": "docker",
+            "request": "attach",
+            "platform": "netCore",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            },
+            "containerName": "ordering.api"
+        },
+        {
             "name": "Catalog Launch",
             "type": "coreclr",
             "request": "launch",
@@ -120,7 +130,8 @@
             "configurations": [
                 "Catalog Docker Attach",
                 "Basket Docker Attach",
-                "Discount Docker Attach"
+                "Discount Docker Attach",
+                "Ordering Docker Attach"
             ]
         }
     ]
