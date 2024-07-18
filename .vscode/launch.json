@@ -42,6 +42,16 @@
             "containerName": "ordering.api"
         },
         {
+            "name": "Yarp API Gateway Attach",
+            "type": "docker",
+            "request": "attach",
+            "platform": "netCore",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            },
+            "containerName": "yarp.api"
+        },
+        {
             "name": "Catalog Launch",
             "type": "coreclr",
             "request": "launch",
@@ -100,6 +110,23 @@
             "program": "${workspaceFolder}/Services/Ordering/Ordering.API/bin/Debug/net8.0/Ordering.API.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Services/Ordering/Ordering.API",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "Yarp Gateway Launch",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/ApiGateways/YarpApiGateway/bin/Debug/net8.0/YarpApiGateway.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/ApiGateways/YarpApiGateway",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
