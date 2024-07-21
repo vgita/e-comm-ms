@@ -120,6 +120,23 @@
             }
         },
         {
+            "name": "Web Client Launch",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/Clients/Shopping.Web/bin/Debug/net8.0/Shopping.Web.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Clients/Shopping.Web",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
             "name": "Yarp Gateway Launch",
             "type": "coreclr",
             "request": "launch",

@@ -1,19 +1,41 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
 namespace Shopping.Web.Pages;
 
-public class IndexModel : PageModel
+public class IndexModel(ICatalogService catalogService,
+    IBasketService basketService,
+    ILogger<IndexModel> logger) : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    public IEnumerable<ProductModel> ProductList { get; set; } = [];
 
-    public IndexModel(ILogger<IndexModel> logger)
+
+    public async Task<IActionResult> OnGetAsync()
     {
-        _logger = logger;
+        logger.LogInformation("Index page visited");
+
+        var result = await catalogService.GetProducts();
+        ProductList = result.Products;
+        return Page();
     }
 
-    public void OnGet()
+    public async Task<IActionResult> OnPostAddToCartAsync(Guid productId)
     {
+        logger.LogInformation("Add to cart button clicked");
 
+        GetProductByIdResponse productResponse = await catalogService.GetProduct(productId);
+
+        var basket = await basketService.LoadUserBasket();
+
+        basket.Items.Add(new ShoppingCartItemModel
+        {
+            ProductId = productId,
+            ProductName = productResponse.Product.Name,
+            Quantity = 1,
+            Price = productResponse.Product.Price,
+            Color = "Black",
+        });
+
+        await basketService.StoreBasket(new StoreBasketRequest(basket));
+
+        return RedirectToPage("Cart"); ;
     }
+
 }
