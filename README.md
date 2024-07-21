@@ -34,7 +34,7 @@ Microservices implementation practice
 
 -   DDD and Clean Architecture
 -   Domain Layer Patterns:
-    -   tactical DDD tactical
+    -   tactical DDD
     -   Domain Entity pattern, Entity Base classes
     -   Rich-domain model
     -   Value Object pattern
